@@ -7,7 +7,7 @@
 # 🚀 Universal AI Text Summarizer 
 **Powered by FLAN-T5 (Large Language Models) & Streamlit**
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Streamlit%20Cloud-FF4B4B)](https://share.streamlit.io/) 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20on%20Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://text-summarizer-k2.streamlit.app/)
 
 A high-performance, abstractive summarization engine designed to transform dense academic papers, legal documents, and long-form articles into concise, human-like summaries. Unlike traditional tools that simply "cut and paste" sentences, this app utilizes **Sequence-to-Sequence (Seq2Seq)** architectures to rephrase and restructure information.
 
