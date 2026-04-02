@@ -495,6 +495,70 @@ hr {
     background: rgba(232,164,74,0.04) !important;
 }
 
+/* ════════════════════════════════════════
+   MOBILE  (≤ 768 px)
+════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* 1. Hide the sidebar AND its toggle arrow entirely —
+          they collapse into a vertical strip that overlaps content */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebarCollapsedControl"],
+    button[kind="header"],
+    .stSidebarCollapsedControl { display: none !important; }
+
+    /* 2. Remove the left margin Streamlit adds for the sidebar */
+    .stApp > .stMain,
+    .stApp [data-testid="stAppViewContainer"] {
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    /* 3. Reduce horizontal padding so text isn't crushed */
+    .block-container {
+        padding: 1.4rem 1.1rem 3rem !important;
+    }
+
+    /* 4. Scale down the hero title on small screens */
+    .hero-title {
+        font-size: 2rem !important;
+        letter-spacing: -0.5px !important;
+    }
+    .hero-sub {
+        font-size: 0.88rem !important;
+    }
+
+    /* 5. Fix the generate button — force amber regardless of
+          Streamlit's mobile stylesheet overrides */
+    [data-testid="baseButton-primary"],
+    button[data-testid="baseButton-primary"],
+    .stButton > button[kind="primary"] {
+        background: var(--accent) !important;
+        background-color: var(--accent) !important;
+        color: #0c0e18 !important;
+        border: none !important;
+    }
+
+    /* 6. Stack stat cards 2×2 on mobile instead of 4×1
+          (4 columns at ~390px would be unreadably tiny) */
+    .stat-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .stat-value {
+        font-size: 1.45rem !important;
+    }
+
+    /* 7. Show a compact inline settings bar at the top
+          since the sidebar is hidden on mobile */
+    .mobile-settings-note {
+        display: flex !important;
+    }
+}
+
+/* Hide on desktop */
+.mobile-settings-note { display: none; }
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -540,6 +604,13 @@ st.markdown("""
     <div class="hero-title">Intelligent <em>Summarizer</em></div>
 </div>
 <div class="hero-sub">Transform long documents into clear, concise summaries — instantly.</div>
+<div class="mobile-settings-note" style="
+    font-size:0.75rem; color:var(--muted);
+    background:var(--surface-solid); border:1px solid var(--border);
+    border-radius:8px; padding:8px 14px; margin-bottom:1.4rem;
+    align-items:center; gap:8px;">
+    ⚙️ &nbsp;Using Fast Mode · 150 max tokens &nbsp;—&nbsp; open on desktop to change
+</div>
 """, unsafe_allow_html=True)
 
 
