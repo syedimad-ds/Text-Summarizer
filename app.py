@@ -14,84 +14,72 @@ st.markdown("""
 
 /* ── Root Variables ── */
 :root {
-    --bg:        #0c0e18;
-    --surface:   #13162280;
+    --bg:            #0c0e18;
     --surface-solid: #131622;
-    --surface2:  #1a1e30;
-    --border:    rgba(255,255,255,0.07);
-    --border-lit: rgba(232,164,74,0.25);
-    --accent:    #e8a44a;
-    --accent2:   #c97b2e;
-    --accent-glow: rgba(232,164,74,0.15);
-    --text:      #e8e9f0;
-    --muted:     #6b7194;
-    --radius:    14px;
+    --surface2:      #1a1e30;
+    --border:        rgba(255,255,255,0.07);
+    --border-lit:    rgba(232,164,74,0.25);
+    --accent:        #e8a44a;
+    --accent2:       #c97b2e;
+    --text:          #e8e9f0;
+    --muted:         #6b7194;
+    --radius:        14px;
 }
 
 /* ════════════════════════════════════════
    KEYFRAMES
 ════════════════════════════════════════ */
-
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(22px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-
 @keyframes orbDrift1 {
-    0%   { transform: translate(0, 0) scale(1); }
-    33%  { transform: translate(60px, -40px) scale(1.08); }
-    66%  { transform: translate(-30px, 50px) scale(0.95); }
-    100% { transform: translate(0, 0) scale(1); }
+    0%   { transform: translate(0,0) scale(1); }
+    33%  { transform: translate(60px,-40px) scale(1.08); }
+    66%  { transform: translate(-30px,50px) scale(0.95); }
+    100% { transform: translate(0,0) scale(1); }
 }
-
 @keyframes orbDrift2 {
-    0%   { transform: translate(0, 0) scale(1); }
-    40%  { transform: translate(-70px, 30px) scale(1.05); }
-    80%  { transform: translate(40px, -60px) scale(0.97); }
-    100% { transform: translate(0, 0) scale(1); }
+    0%   { transform: translate(0,0) scale(1); }
+    40%  { transform: translate(-70px,30px) scale(1.05); }
+    80%  { transform: translate(40px,-60px) scale(0.97); }
+    100% { transform: translate(0,0) scale(1); }
 }
-
 @keyframes shimmer {
     0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
+    100% { background-position:  200% center; }
 }
-
 @keyframes borderPulse {
-    0%, 100% { border-left-color: var(--accent); box-shadow: -3px 0 14px rgba(232,164,74,0.2); }
-    50%       { border-left-color: #f0bc72;       box-shadow: -3px 0 28px rgba(232,164,74,0.45); }
+    0%,100% { border-left-color: var(--accent); box-shadow: -3px 0 14px rgba(232,164,74,0.2); }
+    50%     { border-left-color: #f0bc72;       box-shadow: -3px 0 28px rgba(232,164,74,0.45); }
 }
-
 @keyframes cardIn {
     from { opacity: 0; transform: translateY(18px) scale(0.97); }
     to   { opacity: 1; transform: translateY(0)    scale(1); }
 }
-
 @keyframes sidebarSlide {
     from { opacity: 0; transform: translateX(-14px); }
     to   { opacity: 1; transform: translateX(0); }
 }
-
 @keyframes accentBlink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
+    0%,100% { opacity: 1; }
+    50%     { opacity: 0.4; }
 }
-
-@keyframes spinRing {
-    to { transform: rotate(360deg); }
-}
-
 @keyframes gradientShift {
     0%   { background-position: 0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+@keyframes btnPulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(232,164,74,0.25); }
+    50%     { box-shadow: 0 4px 32px rgba(232,164,74,0.5); }
+}
 
-/* ── Accessibility: respect reduced motion ── */
+/* ── Accessibility ── */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -108,11 +96,11 @@ html, body, .stApp {
     font-family: 'DM Sans', sans-serif !important;
 }
 
-/* ── Hide Streamlit chrome ── */
+/* Hide Streamlit chrome */
 #MainMenu, footer, header, a.header-anchor,
 .stDeployButton, .viewerBadge_container__1QSob { display: none !important; }
 
-/* ── App container ── */
+/* App container */
 .block-container {
     padding: 2.5rem 3rem 5rem !important;
     max-width: 1100px;
@@ -120,10 +108,9 @@ html, body, .stApp {
 }
 
 /* ════════════════════════════════════════
-   AMBIENT BACKGROUND ORBS
+   AMBIENT ORBS
 ════════════════════════════════════════ */
-.stApp::before,
-.stApp::after {
+.stApp::before, .stApp::after {
     content: '';
     position: fixed;
     border-radius: 50%;
@@ -145,7 +132,7 @@ html, body, .stApp {
 }
 
 /* ════════════════════════════════════════
-   HERO HEADER  — staggered reveal
+   HERO
 ════════════════════════════════════════ */
 .hero-wrap {
     animation: fadeUp 0.7s cubic-bezier(.22,.68,0,1.2) both;
@@ -207,7 +194,6 @@ html, body, .stApp {
     animation: sidebarSlide 0.6s cubic-bezier(.22,.68,0,1.2) both;
 }
 [data-testid="stSidebar"] > div { padding-top: 1.8rem !important; }
-
 .sidebar-brand {
     font-family: 'Playfair Display', serif;
     font-size: 1.45rem;
@@ -215,25 +201,7 @@ html, body, .stApp {
     margin-bottom: 3px;
     letter-spacing: -0.3px;
 }
-.sidebar-tagline {
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-bottom: 1.6rem;
-}
-.sidebar-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 1.2rem 0;
-}
-.sidebar-section-title {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-}
-
+.sidebar-tagline { font-size: 0.76rem; color: var(--muted); margin-bottom: 1.6rem; }
 [data-testid="stSidebar"] .stMarkdown h1,
 [data-testid="stSidebar"] .stMarkdown h2,
 [data-testid="stSidebar"] .stMarkdown h3 {
@@ -251,7 +219,6 @@ html, body, .stApp {
     transition: color 0.2s;
 }
 [data-testid="stRadio"] label:hover { color: var(--accent) !important; }
-
 [data-testid="stSlider"] label { color: var(--muted) !important; font-size: 0.8rem !important; }
 
 /* ════════════════════════════════════════
@@ -277,7 +244,7 @@ hr {
 }
 
 /* ════════════════════════════════════════
-   TEXTAREA — focus glow pulse
+   TEXTAREA
 ════════════════════════════════════════ */
 [data-testid="stTextArea"] textarea {
     background: var(--surface-solid) !important;
@@ -293,8 +260,7 @@ hr {
 }
 [data-testid="stTextArea"] textarea:focus {
     border-color: var(--accent) !important;
-    box-shadow: 0 0 0 3px rgba(232,164,74,0.1),
-                0 0 24px rgba(232,164,74,0.06) !important;
+    box-shadow: 0 0 0 3px rgba(232,164,74,0.1), 0 0 24px rgba(232,164,74,0.06) !important;
     outline: none !important;
 }
 [data-testid="stTextArea"] label { display: none !important; }
@@ -318,12 +284,18 @@ hr {
 [data-testid="stFileUploader"] * { color: var(--muted) !important; }
 
 /* ════════════════════════════════════════
-   GENERATE BUTTON — shimmer on hover
+   GENERATE BUTTON
+   Multi-layer selectors to beat Streamlit's
+   own stylesheet on both desktop and mobile
 ════════════════════════════════════════ */
-[data-testid="baseButton-primary"] {
+.stButton > button,
+.stButton > button[kind="primary"],
+[data-testid="baseButton-primary"],
+button[data-testid="baseButton-primary"] {
     position: relative !important;
     overflow: hidden !important;
     background: var(--accent) !important;
+    background-color: var(--accent) !important;
     color: #0c0e18 !important;
     border: none !important;
     border-radius: 10px !important;
@@ -333,52 +305,59 @@ hr {
     letter-spacing: 0.02em !important;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
     box-shadow: 0 4px 20px rgba(232,164,74,0.25) !important;
-    animation: fadeUp 0.6s 0.4s cubic-bezier(.22,.68,0,1.2) both;
+    animation: fadeUp 0.6s 0.4s cubic-bezier(.22,.68,0,1.2) both,
+               btnPulse 2.5s 1.2s ease-in-out 3 !important;
 }
+/* Shimmer sweep */
+.stButton > button::after,
 [data-testid="baseButton-primary"]::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        105deg,
-        transparent 30%,
-        rgba(255,255,255,0.22) 50%,
-        transparent 70%
-    );
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%);
     background-size: 200% 100%;
     background-position: -200% center;
-    transition: background-position 0s;
+    pointer-events: none;
 }
+.stButton > button:hover::after,
 [data-testid="baseButton-primary"]:hover::after {
     animation: shimmer 0.55s ease forwards;
 }
+.stButton > button:hover,
 [data-testid="baseButton-primary"]:hover {
     background: #edaf58 !important;
+    background-color: #edaf58 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 28px rgba(232,164,74,0.35) !important;
+    box-shadow: 0 8px 28px rgba(232,164,74,0.4) !important;
 }
+.stButton > button:active,
 [data-testid="baseButton-primary"]:active {
-    transform: translateY(0) scale(0.98) !important;
+    transform: translateY(0) scale(0.97) !important;
     box-shadow: 0 2px 10px rgba(232,164,74,0.2) !important;
 }
 
-/* Download button */
-[data-testid="baseButton-secondary"] {
+/* Download button — secondary, must come AFTER primary rules */
+[data-testid="baseButton-secondary"],
+button[data-testid="baseButton-secondary"] {
     background: var(--surface2) !important;
+    background-color: var(--surface2) !important;
     color: var(--text) !important;
     border: 1px solid var(--border) !important;
     border-radius: 10px !important;
-    font-family: 'DM Sans', sans-serif !important;
     font-size: 0.88rem !important;
+    box-shadow: none !important;
+    animation: none !important;
     transition: border-color 0.2s, background 0.2s !important;
 }
 [data-testid="baseButton-secondary"]:hover {
     border-color: var(--border-lit) !important;
-    background: rgba(232,164,74,0.05) !important;
+    background: rgba(232,164,74,0.06) !important;
+    background-color: rgba(232,164,74,0.06) !important;
+    transform: none !important;
 }
 
 /* ════════════════════════════════════════
-   STAT CARDS — cascade entry
+   STAT CARDS
 ════════════════════════════════════════ */
 .stat-row {
     display: grid;
@@ -407,29 +386,20 @@ hr {
 .stat-card:nth-child(2) { animation-delay: 0.13s; }
 .stat-card:nth-child(3) { animation-delay: 0.21s; }
 .stat-card:nth-child(4) { animation-delay: 0.29s; }
-
 .stat-label {
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
+    font-size: 0.68rem; font-weight: 500;
+    letter-spacing: 0.13em; text-transform: uppercase;
     color: var(--muted);
 }
 .stat-value {
     font-family: 'Playfair Display', serif;
-    font-size: 1.85rem;
-    color: var(--text);
-    line-height: 1;
+    font-size: 1.85rem; color: var(--text); line-height: 1;
 }
 .stat-value.accent { color: var(--accent); }
-.stat-unit {
-    font-size: 0.73rem;
-    color: var(--muted);
-    margin-top: 1px;
-}
+.stat-unit { font-size: 0.73rem; color: var(--muted); margin-top: 1px; }
 
 /* ════════════════════════════════════════
-   SUMMARY CARD — border pulse + fade-in
+   SUMMARY CARD
 ════════════════════════════════════════ */
 .summary-card {
     background: var(--surface-solid);
@@ -446,7 +416,32 @@ hr {
 }
 
 /* ════════════════════════════════════════
-   ALERTS
+   MOBILE SETTINGS PANEL
+   Rendered by Python but hidden on desktop.
+   CSS flips display:block on mobile.
+════════════════════════════════════════ */
+.mobile-settings-wrap {
+    display: none;
+}
+.mobile-settings-inner {
+    background: var(--surface-solid);
+    border: 1px solid var(--border-lit);
+    border-radius: var(--radius);
+    padding: 14px 16px 8px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.5s 0.1s both;
+}
+.mobile-settings-title {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+/* ════════════════════════════════════════
+   ALERTS / SPINNER
 ════════════════════════════════════════ */
 [data-testid="stAlert"] {
     background: var(--surface-solid) !important;
@@ -455,22 +450,8 @@ hr {
     color: var(--text) !important;
     animation: fadeIn 0.35s both;
 }
-
-/* ════════════════════════════════════════
-   SPINNER — custom ring
-════════════════════════════════════════ */
-[data-testid="stSpinner"] p { color: var(--muted) !important; font-size: 0.88rem !important; }
+[data-testid="stSpinner"] p   { color: var(--muted) !important; font-size: 0.88rem !important; }
 [data-testid="stSpinner"] svg { stroke: var(--accent) !important; }
-
-/* ════════════════════════════════════════
-   METRIC FALLBACK
-════════════════════════════════════════ */
-[data-testid="metric-container"] {
-    background: var(--surface-solid) !important;
-    border-radius: var(--radius) !important;
-    border: 1px solid var(--border) !important;
-    padding: 14px !important;
-}
 
 /* ════════════════════════════════════════
    SCROLLBAR
@@ -481,7 +462,7 @@ hr {
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 /* ════════════════════════════════════════
-   RADIO — input mode selector
+   RADIO — horizontal input-mode picker
 ════════════════════════════════════════ */
 [data-testid="stRadio"][data-horizontal="true"] label {
     border: 1px solid var(--border) !important;
@@ -496,75 +477,105 @@ hr {
 }
 
 /* ════════════════════════════════════════
-   MOBILE  (≤ 768 px)
+   MOBILE  ≤ 768 px
 ════════════════════════════════════════ */
 @media (max-width: 768px) {
 
-    /* 1. Hide the sidebar AND its toggle arrow entirely —
-          they collapse into a vertical strip that overlaps content */
+    /* ── 1. Nuke sidebar and every possible toggle element ── */
     [data-testid="stSidebar"],
+    section[data-testid="stSidebar"],
     [data-testid="stSidebarCollapsedControl"],
+    div[data-testid="stSidebarCollapsedControl"],
+    [data-testid="stSidebarNav"],
+    [data-testid="collapsedControl"],
+    .stSidebarCollapsedControl,
     button[kind="header"],
-    .stSidebarCollapsedControl { display: none !important; }
+    button[aria-label="Open sidebar"],
+    button[aria-label="Close sidebar"],
+    button[aria-label="open sidebar"],
+    button[aria-label="close sidebar"] {
+        display:        none !important;
+        visibility:     hidden !important;
+        width:          0 !important;
+        min-width:      0 !important;
+        max-width:      0 !important;
+        overflow:       hidden !important;
+        pointer-events: none !important;
+    }
 
-    /* 2. Remove the left margin Streamlit adds for the sidebar */
+    /* ── 2. Remove the reserved sidebar margin ── */
     .stApp > .stMain,
-    .stApp [data-testid="stAppViewContainer"] {
-        margin-left: 0 !important;
+    .stApp [data-testid="stAppViewContainer"],
+    [data-testid="stAppViewContainer"] > .main {
+        margin-left:  0 !important;
         padding-left: 0 !important;
     }
 
-    /* 3. Reduce horizontal padding so text isn't crushed */
+    /* ── 3. Tighter padding ── */
     .block-container {
-        padding: 1.4rem 1.1rem 3rem !important;
+        padding: 1.4rem 1rem 3rem !important;
     }
 
-    /* 4. Scale down the hero title on small screens */
-    .hero-title {
-        font-size: 2rem !important;
-        letter-spacing: -0.5px !important;
-    }
-    .hero-sub {
-        font-size: 0.88rem !important;
-    }
+    /* ── 4. Responsive hero text ── */
+    .hero-title  { font-size: 2.1rem !important; letter-spacing: -0.5px !important; }
+    .hero-sub    { font-size: 0.88rem !important; }
 
-    /* 5. Fix the generate button — force amber regardless of
-          Streamlit's mobile stylesheet overrides */
-    [data-testid="baseButton-primary"],
-    button[data-testid="baseButton-primary"],
-    .stButton > button[kind="primary"] {
-        background: var(--accent) !important;
+    /* ── 5. Show the in-page settings panel ── */
+    .mobile-settings-wrap { display: block !important; }
+
+    /* ── 6. Stats 2×2 grid ── */
+    .stat-row { grid-template-columns: repeat(2, 1fr) !important; gap: 10px !important; }
+    .stat-value { font-size: 1.45rem !important; }
+
+    /* ── 7. Amber button — highest possible specificity.
+              Streamlit mobile injects background:rgb(255,75,75)
+              via an emotion-cache class. We beat it with
+              html body .stApp chaining + !important. ── */
+    html body .stApp .stButton > button,
+    html body .stApp .stButton > button[kind="primary"],
+    html body .stApp [data-testid="baseButton-primary"],
+    html body .stApp button[data-testid="baseButton-primary"] {
+        background:       var(--accent) !important;
         background-color: var(--accent) !important;
-        color: #0c0e18 !important;
-        border: none !important;
+        color:            #0c0e18 !important;
+        border:           none !important;
+        box-shadow:       0 4px 20px rgba(232,164,74,0.3) !important;
+    }
+    html body .stApp .stButton > button:hover,
+    html body .stApp [data-testid="baseButton-primary"]:hover {
+        background:       #edaf58 !important;
+        background-color: #edaf58 !important;
     }
 
-    /* 6. Stack stat cards 2×2 on mobile instead of 4×1
-          (4 columns at ~390px would be unreadably tiny) */
-    .stat-row {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px !important;
-    }
-    .stat-value {
-        font-size: 1.45rem !important;
-    }
-
-    /* 7. Show a compact inline settings bar at the top
-          since the sidebar is hidden on mobile */
-    .mobile-settings-note {
-        display: flex !important;
+    /* Keep download button dark on mobile */
+    html body .stApp [data-testid="baseButton-secondary"],
+    html body .stApp button[data-testid="baseButton-secondary"] {
+        background:       var(--surface2) !important;
+        background-color: var(--surface2) !important;
+        color:            var(--text) !important;
+        box-shadow:       none !important;
     }
 }
-
-/* Hide on desktop */
-.mobile-settings-note { display: none; }
-
 </style>
 """, unsafe_allow_html=True)
 
 
 # ==========================================
-# 2. SIDEBAR
+# 2. SESSION STATE
+#    model_choice persists across reruns so
+#    both sidebar (desktop) and inline panel
+#    (mobile) stay in sync.
+# ==========================================
+if "model_choice" not in st.session_state:
+    st.session_state.model_choice = "⚡ Fast Mode (flan-t5-small)"
+if "summary_length" not in st.session_state:
+    st.session_state.summary_length = 150
+if "min_length" not in st.session_state:
+    st.session_state.min_length = 30
+
+
+# ==========================================
+# 3. SIDEBAR  (desktop)
 # ==========================================
 with st.sidebar:
     st.markdown("""
@@ -573,22 +584,29 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
     st.markdown("**Engine**")
-    model_choice = st.radio(
-        "engine",
+    desktop_model = st.radio(
+        "desktop_engine",
         ["⚡ Fast Mode (flan-t5-small)", "🧠 High Accuracy (flan-t5-base)"],
-        label_visibility="collapsed"
+        index=0 if "small" in st.session_state.model_choice else 1,
+        label_visibility="collapsed",
     )
+    st.session_state.model_choice = desktop_model
 
     st.markdown("---")
     st.markdown("**Output Length**")
-    summary_length = st.slider("Max tokens", 50, 500, 150, label_visibility="collapsed")
-    st.caption(f"Max: {summary_length} tokens")
-    min_length = st.slider("Min tokens", 10, 200, 30, label_visibility="collapsed")
-    st.caption(f"Min: {min_length} tokens")
+    desktop_max = st.slider("Desktop max", 50, 500, st.session_state.summary_length,
+                             label_visibility="collapsed")
+    st.caption(f"Max: {desktop_max} tokens")
+    st.session_state.summary_length = desktop_max
+
+    desktop_min = st.slider("Desktop min", 10, 200, st.session_state.min_length,
+                             label_visibility="collapsed")
+    st.caption(f"Min: {desktop_min} tokens")
+    st.session_state.min_length = desktop_min
 
     st.markdown("---")
     st.markdown("""
-    <div style="font-size:0.75rem; color: var(--muted); line-height:1.6;">
+    <div style="font-size:0.75rem; color:var(--muted); line-height:1.6;">
     Built with FLAN-T5 · Hugging Face<br>
     No data is stored or logged.
     </div>
@@ -596,7 +614,7 @@ with st.sidebar:
 
 
 # ==========================================
-# 3. HEADER
+# 4. HEADER
 # ==========================================
 st.markdown("""
 <div class="hero-wrap">
@@ -604,18 +622,57 @@ st.markdown("""
     <div class="hero-title">Intelligent <em>Summarizer</em></div>
 </div>
 <div class="hero-sub">Transform long documents into clear, concise summaries — instantly.</div>
-<div class="mobile-settings-note" style="
-    font-size:0.75rem; color:var(--muted);
-    background:var(--surface-solid); border:1px solid var(--border);
-    border-radius:8px; padding:8px 14px; margin-bottom:1.4rem;
-    align-items:center; gap:8px;">
-    ⚙️ &nbsp;Using Fast Mode · 150 max tokens &nbsp;—&nbsp; open on desktop to change
-</div>
 """, unsafe_allow_html=True)
 
 
 # ==========================================
-# 4. MODEL LOADER
+# 5. MOBILE SETTINGS PANEL
+#    Hidden on desktop via CSS.
+#    Gives mobile users full control over
+#    model and length without needing sidebar.
+# ==========================================
+st.markdown("""
+<div class="mobile-settings-wrap">
+    <div class="mobile-settings-inner">
+        <div class="mobile-settings-title">⚙️ Settings</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# These widgets are always rendered by Python (needed for state),
+# but CSS hides the entire .mobile-settings-wrap on desktop,
+# so desktop users only ever see the sidebar controls.
+mobile_model = st.radio(
+    "mobile_engine",
+    ["⚡ Fast Mode (flan-t5-small)", "🧠 High Accuracy (flan-t5-base)"],
+    index=0 if "small" in st.session_state.model_choice else 1,
+    horizontal=True,
+    label_visibility="collapsed",
+)
+st.session_state.model_choice = mobile_model
+
+mobile_max = st.slider(
+    "Mobile max length",
+    50, 500, st.session_state.summary_length,
+    label_visibility="collapsed",
+)
+st.session_state.summary_length = mobile_max
+
+mobile_min = st.slider(
+    "Mobile min length",
+    10, 200, st.session_state.min_length,
+    label_visibility="collapsed",
+)
+st.session_state.min_length = mobile_min
+
+# Resolve final values from session state
+model_choice   = st.session_state.model_choice
+summary_length = st.session_state.summary_length
+min_length     = st.session_state.min_length
+
+
+# ==========================================
+# 6. MODEL LOADER
 # ==========================================
 @st.cache_resource
 def load_ai_engine(choice):
@@ -624,16 +681,20 @@ def load_ai_engine(choice):
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
     return tokenizer, model
 
-with st.spinner(f"Loading engine…"):
+with st.spinner("Loading engine…"):
     tokenizer, model = load_ai_engine(model_choice)
 
 
 # ==========================================
-# 5. INPUT SECTION
+# 7. INPUT SECTION
 # ==========================================
 st.markdown('<div class="section-label">Input</div>', unsafe_allow_html=True)
-input_type = st.radio("input_mode", ["📝 Paste Text", "📄 Upload PDF"],
-                      horizontal=True, label_visibility="collapsed")
+input_type = st.radio(
+    "input_mode",
+    ["📝 Paste Text", "📄 Upload PDF"],
+    horizontal=True,
+    label_visibility="collapsed",
+)
 
 raw_text = ""
 
@@ -642,9 +703,8 @@ if input_type == "📝 Paste Text":
         "text_input",
         placeholder="Paste your article, research paper, or document here…",
         height=220,
-        label_visibility="collapsed"
+        label_visibility="collapsed",
     )
-
 else:
     uploaded_file = st.file_uploader("pdf_upload", type="pdf", label_visibility="collapsed")
     if uploaded_file:
@@ -659,14 +719,14 @@ else:
             st.error(f"Could not read PDF: {e}")
     else:
         st.markdown("""
-        <div style="text-align:center; padding: 2rem; color: var(--muted); font-size:0.88rem;">
+        <div style="text-align:center; padding:2rem; color:var(--muted); font-size:0.88rem;">
         📄 &nbsp; Drag and drop a PDF here, or click to browse
         </div>
         """, unsafe_allow_html=True)
 
 
 # ==========================================
-# 6. GENERATE BUTTON
+# 8. GENERATE BUTTON
 # ==========================================
 st.markdown("<br>", unsafe_allow_html=True)
 generate = st.button("✦ Generate Summary", type="primary", use_container_width=True)
@@ -675,7 +735,7 @@ st.markdown("---")
 
 
 # ==========================================
-# 7. SUMMARIZATION & OUTPUT
+# 9. SUMMARIZATION & OUTPUT
 # ==========================================
 if generate:
     word_count = len(raw_text.split())
@@ -705,8 +765,8 @@ if generate:
                 time_taken = round(time.time() - start_time, 2)
 
                 original_words = len(raw_text.split())
-                summary_words = len(summary_text.split())
-                compression = round((1 - summary_words / original_words) * 100, 1) if original_words else 0
+                summary_words  = len(summary_text.split())
+                compression    = round((1 - summary_words / original_words) * 100, 1) if original_words else 0
 
                 # ── Stat Cards ──
                 st.markdown(f"""
@@ -741,7 +801,12 @@ if generate:
                 # ── Download ──
                 st.download_button(
                     label="↓ Download as .txt",
-                    data=f"ORIGINAL: {original_words} words\nSUMMARY: {summary_words} words\nCOMPRESSION: {compression}%\nTIME: {time_taken}s\n\n---\n\n{summary_text}",
+                    data=(
+                        f"ORIGINAL: {original_words} words\n"
+                        f"SUMMARY:  {summary_words} words\n"
+                        f"COMPRESSION: {compression}%\n"
+                        f"TIME: {time_taken}s\n\n---\n\n{summary_text}"
+                    ),
                     file_name="summary.txt",
                     mime="text/plain",
                 )
